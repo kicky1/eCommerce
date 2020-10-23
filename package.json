@@ -1,0 +1,69 @@
+{
+  "name": "amazona",
+  "version": "1.0.0",
+  "description": "Demo : https://amazonaapp.herokuapp.com/",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/runtime": "^7.11.2",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "aws-sdk": "^2.763.0",
+    "axios": "^0.20.0",
+    "babel-node": "0.0.1-security",
+    "body-parser": "^1.19.0",
+    "clsx": "^1.1.1",
+    "dotenv": "^8.2.0",
+    "eslint-plugin-react": "^7.19.0",
+    "express": "^4.17.1",
+    "i": "^0.3.6",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "material-ui-popup-state": "^1.6.1",
+    "modules": "^0.4.0",
+    "mongoose": "^5.10.7",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "node": "^14.13.0",
+    "npm": "^6.14.8",
+    "path": "^0.12.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "build": "rm -rf dist && babel backend -d dist  && cd frontend && npm install && npm run build",
+    "heroku-postbuild-x": "npm run build && cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basir/amazona.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basir/amazona/issues"
+  },
+  "homepage": "https://github.com/basir/amazona#readme",
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
+  }
+}
