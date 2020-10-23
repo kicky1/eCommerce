@@ -41,7 +41,7 @@ function CartScreen(props) {
     props.history.push("/signin?redirect=shipping");
   }
   const loginHandler = () => {
-    props.history.push('/login/');
+    props.history.push('/signin?');
   };
   const backHandler = () => {
     props.history.push('/');
@@ -59,9 +59,9 @@ function CartScreen(props) {
                     <Grid item xs={12}>
                       <h2>Koszyk jest pusty!</h2>
                     </Grid>
-                    <Grid item xs={12} md={6} className={classes.right2}>
+                    <Grid item xs={12} sm={6} className={classes.right2}>
                     <Button 
-                      variant="contained" 
+                      variant="outlined" 
                       color="primary"
                       onClick={loginHandler} 
                       type="button" 
@@ -70,7 +70,7 @@ function CartScreen(props) {
                         Zaloguj się
                     </Button>
                     </Grid>
-                    <Grid item xs={12} md={6} className={classes.left}>
+                    <Grid item xs={12} sm={6} className={classes.left}>
                     <Button 
                       variant="contained" 
                       color="primary"
@@ -234,13 +234,13 @@ const useStyles = makeStyles((theme) => ({
   },
   right2:{
     textAlign:"right",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },
   left:{
     textAlign:"left",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },
