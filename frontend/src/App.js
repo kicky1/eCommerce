@@ -180,14 +180,24 @@ function App(props) {
                   </Grid>
                   <Grid item xs={3} md={1} className={classes.items}>
                     <div className={classes.grow}/>             
-                    {!userInfo ? (    
+                    {!userInfo ? ( 
+                      <div>  
                     <Link to={"/cart/:id?"}>
                       <IconButton 
                         edge="end"
                         color="inherit">
                         <ShoppingCartIcon/>                   
                       </IconButton>  
-                    </Link>                     
+                    </Link>    
+                    <Link to={"/signin?/"}>
+                      <IconButton 
+                        aria-label="show more"
+                        aria-haspopup="true"
+                        color="inherit" >
+                        <AccountCircle/>
+                      </IconButton> 
+                    </Link>    
+                      </div>             
                     ) : (
                       <div className={classes.sectionMobile}>
                       <Link to={"/cart/:id?"}>

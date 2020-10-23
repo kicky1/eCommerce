@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
+import Grid from '@material-ui/core/Grid';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 function RegisterScreen(props) {
 
@@ -16,7 +23,7 @@ function RegisterScreen(props) {
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
   useEffect(() => {
     if (userInfo) {
-      props.history.push(redirect);
+      props.history.push('/');
     }
     return () => {
       //
@@ -27,51 +34,76 @@ function RegisterScreen(props) {
     e.preventDefault();
     dispatch(register(name, email, password));
   }
-  return <div className="form">
-    <form onSubmit={submitHandler} >
-      <ul className="form-container">
-        <li>
-          <h2>Create Account</h2>
-        </li>
-        <li>
+  const classes = useStyles();
+
+  return (
+
+    <Container>
+      <Grid container spacing={4} className={classes.container} justify="flex-start" alignItems="flex-start" >
+        <Grid item xs={12}>
+          <div className={classes.title}>Rejestracja,</div>
           {loading && <div>Loading...</div>}
           {error && <div>{error}</div>}
-        </li>
-        <li>
-          <label htmlFor="name">
-            Name
-          </label>
-          <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
-          </input>
-        </li>
-        <li>
-          <label htmlFor="email">
-            Email
-          </label>
-          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
-          </input>
-        </li>
-        <li>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
-          </input>
-        </li>
-        <li>
-          <label htmlFor="rePassword">Re-Enter Password</label>
-          <input type="password" id="rePassword" name="rePassword" onChange={(e) => setRePassword(e.target.value)}>
-          </input>
-        </li>
-        <li>
-          <button type="submit" className="button primary">Register</button>
-        </li>
-        <li>
-          Already have an account?
-          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="component-outlined">Imie</InputLabel>
+            <OutlinedInput id="component-outlined" value={name} type={name} id={name} onChange={(e) => setName(e.target.value)} label="name" />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="component-outlined">Email</InputLabel>
+            <OutlinedInput id="component-outlined" value={email} type ={email} id={email} onChange={(e) => setEmail(e.target.value)} label="emial" />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="component-outlined">Hasło</InputLabel>
+            <OutlinedInput id="component-outlined" value={password} type ={password} id={password} onChange={(e) => setPassword(e.target.value)} label="password" />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="component-outlined">re-Hasło</InputLabel>
+            <OutlinedInput id="component-outlined" value={rePassword} type ={rePassword} id={rePassword} onChange={(e) => setRePassword(e.target.value)} label="rePassword" />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <Button 
+            variant="contained" 
+            color="primary"
+            onClick={submitHandler} 
+            type="button" 
+            >
+              Zarejestruj się
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          Masz już konto?
+          <div>
+          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} >Zaloguj się</Link>
+          </div>
+        </Grid>
+      </Grid>
+    </Container>
 
-        </li>
 
-      </ul>
-    </form>
-  </div>
+
+
+
+
+  );
 }
+
+const useStyles = makeStyles((theme) => ({
+  container : {
+    paddingTop: theme.spacing(4),
+    textAlign : 'center',
+  },
+  title : {
+    fontSize: '2.5rem'
+  },
+}));
+
 export default RegisterScreen;

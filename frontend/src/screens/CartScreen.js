@@ -40,6 +40,12 @@ function CartScreen(props) {
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   }
+  const loginHandler = () => {
+    props.history.push('/login/');
+  };
+  const backHandler = () => {
+    props.history.push('/');
+  };
   const classes = useStyles();
 
   return (
@@ -47,9 +53,36 @@ function CartScreen(props) {
       
               {
                 cartItems.length === 0 ?
-              <div>
-               Cart is empty
-              </div>
+                <Grid container spacing={5} className={classes.container2} justify="flex-start"
+                alignItems="flex-start" >
+                  <Grid container spacing={2} className={classes.paper}> 
+                    <Grid item xs={12}>
+                      <h2>Koszyk jest pusty!</h2>
+                    </Grid>
+                    <Grid item xs={12} md={6} className={classes.right2}>
+                    <Button 
+                      variant="contained" 
+                      color="primary"
+                      onClick={loginHandler} 
+                      type="button" 
+                      className={classes.loginButton}
+                      >
+                        Zaloguj się
+                    </Button>
+                    </Grid>
+                    <Grid item xs={12} md={6} className={classes.left}>
+                    <Button 
+                      variant="contained" 
+                      color="primary"
+                      onClick={backHandler} 
+                      type="button" 
+                      className={classes.backButton}
+                      >
+                        Kontynuuj zakupy 
+                    </Button>
+                    </Grid>
+                  </Grid>
+                </Grid>
              : 
              <Grid container spacing={5} className={classes.container} justify="flex-start"
              alignItems="flex-start" >
@@ -190,8 +223,26 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginTop: theme.spacing(2),
   },
+  container2:{
+    backgroundColor: "#f0f0f0f0",
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(10),
+    textAlign: 'center',
+  },
   right:{
     textAlign:"right",
+  },
+  right2:{
+    textAlign:"right",
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+    },
+  },
+  left:{
+    textAlign:"left",
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+    },
   },
   paddingTop:{
     paddingTop: theme.spacing(4),
@@ -199,6 +250,12 @@ const useStyles = makeStyles((theme) => ({
   checkout:{
     width:'100%',
   },
+  loginButton:{
+    width:'12rem'
+  },
+  backButton:{
+    width:'12rem'
+  }
 
   
 
